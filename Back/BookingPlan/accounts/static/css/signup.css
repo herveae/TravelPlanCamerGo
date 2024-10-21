@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* .signup{
+    background-size: cover;
+}
+
+.card {
+    background-color: white;
+    border-radius: 15px;
+}
+
+h2 {
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #007BFF;
+    border-color: #000000;
+} */
+
+body{
+    /* background-color: rgb(19, 2, 33); */
+    /* color: white; */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    max-height: 300px;
+    background-color: #0e1c29;
+    color: white;
+}
+
+p,span, .small, small{
+    color: rgb(181, 174, 174) !important;
+}
+
+.form-control{
+    background-color: transparent;
+    color: rgb(179, 177, 177);
+    
+}
+
+.login{
+    max-height: 300px;
+}
+section form{
+    border: none;
+}
+
+.btn-form{
+    padding: 10px 32px;
+    background-color: #007BFF;
+    color: white;
+    margin-right: 20px;
+    z-index: 12;
+}
+
+.btn-form:hover{
+    background-color: #007BFF;
+    color: white;
+    margin-right: 20px;
+    z-index: 12;
+}
+
+/* @media (max-width: 768px) {
+    .card {
+        margin: 20px;
+    }
+} */

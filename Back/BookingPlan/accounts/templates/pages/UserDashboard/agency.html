@@ -1,0 +1,32 @@
+{% extends "pages/UserDashboard/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="search-bar">
+            <input type="text" placeholder="Find by agency or destination">
+            <button><i class="fa fa-search"></i> Search</button>
+        </div>
+    </div>
+
+    
+    <div class="agency">
+        <a href="{% url 'list_all_travel_plan' %}" class="all mb-4"><strong>View All Travel Plans</strong></a>
+        {% for agency in agencies %}
+        <div class="agency-item mt-2">
+            <div class="row mt-3">
+                <div class="col-lg-3"><img src="{% static agency.image %}" alt="{{ agency.name }}"></div>
+                <div class="des col-lg-9">
+                    <div class="col-lg-12">
+                        <h3>{{ agency.name }}</h3>
+                        <p>{{ agency.description }}</p>
+                       <a class="" href="{% url 'list_agency_travel_client' agency.id %}">Travel Plans <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

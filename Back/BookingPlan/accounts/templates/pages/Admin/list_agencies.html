@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>List of Agencies</title>
+    <link rel="stylesheet" href="../../../static/css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
+
+        body {
+            font-family: "Space Grotesk", sans-serif;
+        }
+
+        header {
+            margin: 0;
+            padding: 0;
+            height: 110px;
+            background: none;
+        }
+
+        .dashboard-stats {}
+
+        .table {
+            margin-top: 50px;
+        }
+
+        .title {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            font-weight: bold;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .link {
+            font-weight: bold;
+        }
+    </style>
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+            <div class="container-fluid">
+                <h4 class="btn navbar-brand" href="#">Admin Dashboard</h4>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="mx-auto collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+
+                        <li class="nav-item">
+                            <a class="link me-4" href="{% url 'admin_home' %}">Admin Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="" href="{% url 'create_receptionist' %}">Create Receptionist</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'create_agency' %}">Create Agency</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'list_agencies' %}">Agency List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'list_all_travel_plans' %}">View All Travel Plans</a>
+
+                        </li>
+                    </ul>
+                    <!-- <div class="navbar-nav mx-auto mb-2 mb-lg-0 btn-div">
+                        <div>
+                            <input type="checkbox" class="checkbox" id="checkbox">
+                            <label for="checkbox" class="checkbox-label">
+                                <i class="fas fa-moon"></i>
+                                <i class="fas fa-sun"></i>
+                                <span class="ball"></span>
+                            </label>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <h1 class="text-center title">List of Agencies</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 mx-auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th>Agency Receptionist</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for agency in agencies %}
+                        <tr class="mb-3">
+                            <td>{{ agency.name }}</td>
+                            <td>{{ agency.description }}</td>
+                            <td><img src="{% static agency.image %}" alt="{{ agency.name }}" width="100"></td>
+                            <td>
+                                {% if agency.agency_receptionist %}
+                                {{ agency.agency_receptionist.name }}
+                                {% else %}
+                                No receptionist assigned
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a class="btn btn-primary px-2 py-2"
+                                    href="{% url 'list_agency_travel_plans' agency.id %}">Travel Plans</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-success px-4 py-2"
+                                    href="{% url 'update_agency' agency.id %}">Update</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger px-4 py-2"
+                                    href="{% url 'delete_agency' agency.id %}">Delete</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4">No agencies found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <a class="me-3 btn btn-success px-4 py-2" href="{% url 'create_agency' %}">Create Agency</a>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
